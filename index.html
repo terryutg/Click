@@ -2,70 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Кликабельная галочка</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <title>✅ Counter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0;
       background-color: #121212;
       color: white;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
+      overflow: hidden;
     }
 
-    .emoji {
-      font-size: 100px;
-      transition: transform 100ms ease-in-out;
-      cursor: pointer;
+    #bigTag {
+      position: absolute;
+      font-size: 20vw;
+      font-weight: bold;
+      color: white;
+      opacity: 0;
+      animation: fadeIn 0.75s ease-in-out forwards;
+      z-index: 0;
+      pointer-events: none;
       user-select: none;
+      opacity: 0.05;
     }
 
-    .emoji:hover {
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 0.05; transform: scale(1); }
+    }
+
+    #check {
+      font-size: 64px;
+      transition: transform 0.2s ease-in-out;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    #check:hover {
       transform: scale(1.05);
     }
 
-    .emoji:active {
+    #check:active {
       transform: scale(0.95);
     }
 
-    .counter {
-      margin-top: 20px;
+    #counter {
+      font-weight: bold;
       font-size: 24px;
+      margin-top: 20px;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-  <div class="emoji" id="checkbox">✅</div>
-  <div class="counter" id="counter">0</div>
+  <div id="bigTag">&lt;/&gt;</div>
+  <div id="check">✅</div>
+  <div id="counter">0</div>
+
+  <audio id="click" src="Click/click.mp3"></audio>
+  <audio id="unclick" src="Click/unclick.mp3"></audio>
 
   <script>
-    const checkbox = document.getElementById('checkbox');
-    const counter = document.getElementById('counter');
+    const check = document.getElementById("check");
+    const counter = document.getElementById("counter");
+    const clickSound = document.getElementById("click");
+    const unclickSound = document.getElementById("unclick");
     let count = 0;
 
-    const clickSound = new Audio('Click.wav');
-    clickSound.volume = 0.2;
+    clickSound.volume = 0.5;
+    unclickSound.volume = 0.5;
 
-    const unclickSound = new Audio('Unclick.wav');
-    unclickSound.volume = 0.2;
-
-    checkbox.addEventListener('mousedown', () => {
+    check.addEventListener("mousedown", () => {
       clickSound.currentTime = 0;
       clickSound.play();
+      check.style.transform = "scale(0.95)";
     });
 
-    checkbox.addEventListener('mouseup', () => {
+    check.addEventListener("mouseup", () => {
       unclickSound.currentTime = 0;
       unclickSound.play();
-    });
-
-    checkbox.addEventListener('click', () => {
-      count++;
-      counter.textContent = count;
+      check.style.transform = "scale(1)";
+      counter.textContent = ++count;
     });
   </script>
 </body>

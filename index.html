@@ -47,6 +47,22 @@
     const counter = document.getElementById('counter');
     let count = 0;
 
+    const clickSound = new Audio('Click.wav');
+    clickSound.volume = 0.5;
+
+    const unclickSound = new Audio('Unclick.wav');
+    unclickSound.volume = 0.5;
+
+    checkbox.addEventListener('mousedown', () => {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    });
+
+    checkbox.addEventListener('mouseup', () => {
+      unclickSound.currentTime = 0;
+      unclickSound.play();
+    });
+
     checkbox.addEventListener('click', () => {
       count++;
       counter.textContent = count;

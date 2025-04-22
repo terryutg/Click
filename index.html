@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -34,7 +34,11 @@
       animation: fadeIn 0.75s ease-in-out forwards;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.05;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 0.05; transform: scale(1); }
     }
 
     #check {
@@ -59,12 +63,6 @@
       margin-top: 10px;
       z-index: 1;
     }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 0.05;
-      }
-    }
   </style>
 </head>
 <body>
@@ -72,8 +70,8 @@
   <div id="check" tabindex="0">✅</div>
   <div id="counter">0</div>
 
-  <audio id="click" src="click.mp3"></audio>
-  <audio id="unclick" src="unclick.mp3"></audio>
+  <audio id="click" src="Click.wav"></audio>
+  <audio id="unclick" src="Unclick.wav"></audio>
 
   <script>
     const check = document.getElementById("check");
@@ -82,8 +80,8 @@
     const unclickSound = document.getElementById("unclick");
     let count = 0;
 
-    clickSound.volume = 0.5;
-    unclickSound.volume = 0.5;
+    clickSound.volume = 0.2;
+    unclickSound.volume = 0.2;
 
     check.addEventListener("mousedown", () => {
       clickSound.currentTime = 0;
@@ -97,6 +95,11 @@
       check.style.transform = "scale(1)";
       count++;
       counter.textContent = count;
+    });
+
+    // Убираем фокус после клика, чтобы избежать синей рамки
+    check.addEventListener("click", () => {
+      check.blur();
     });
   </script>
 </body>

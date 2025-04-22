@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Кликабельная галочка</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .emoji {
+      font-size: 100px;
+      transition: transform 200ms ease-in-out;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .emoji:hover {
+      transform: scale(1.05);
+    }
+
+    .emoji:active {
+      transform: scale(0.95);
+    }
+
+    .counter {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="emoji" id="checkbox">✅</div>
+  <div class="counter" id="counter">0</div>
+
+  <script>
+    const checkbox = document.getElementById('checkbox');
+    const counter = document.getElementById('counter');
+    let count = 0;
+
+    checkbox.addEventListener('click', () => {
+      count++;
+      counter.textContent = count;
+    });
+  </script>
+</body>
+</html>

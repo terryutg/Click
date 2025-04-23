@@ -6,6 +6,12 @@
   <title>Кликер</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
+    /* Подключаем локальный шрифт для эмодзи */
+    @font-face {
+      font-family: 'SegoeEmoji';
+      src: url('seguiemj.ttf') format('truetype');
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -42,6 +48,7 @@
     }
 
     #check {
+      font-family: 'SegoeEmoji', sans-serif;  /* Применяем шрифт для эмодзи */
       font-size: 64px;
       transition: transform 0.2s ease-in-out;
       cursor: pointer;
